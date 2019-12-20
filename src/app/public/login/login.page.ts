@@ -21,10 +21,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-    // firebase initialization for email login
-    // Jon checkout this try catch and let me know if it looks stupid
-  async login(){
-   
+  // firebase initialization for email login
+  // Jon checkout this try catch and let me know if it looks stupid
+  async login() {
+
     const { username, password } = this
     this.afAuth.auth.signInWithEmailAndPassword(username + '@gmail.com', password)
       .then(response => {

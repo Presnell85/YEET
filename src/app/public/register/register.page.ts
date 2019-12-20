@@ -21,21 +21,20 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  async register(){
+  async register() {
     //verify that passwords match
-    const {username, password, cpassword} = this
-    if(password !== cpassword) {
+    const { username, password, cpassword } = this
+    if (password !== cpassword) {
       return console.error("yo, your shit don't match")
     }
 
 
     try {
       //use firebase to create username and password
-    const res = await this.afAuth.auth.createUserWithEmailAndPassword(username + '@gmail.com', password)
-    console.log(res)
-  }catch(error) {
-    console.dir(error);
-    
+      const res = await this.afAuth.auth.createUserWithEmailAndPassword(username + '@gmail.com', password)
+      console.log(res)
+    } catch (error) {
+      console.dir(error);
+    }
   }
-}
 }
