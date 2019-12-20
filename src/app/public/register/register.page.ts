@@ -49,32 +49,6 @@ export class RegisterPage implements OnInit {
         }
     });
 
-    // this.contacts.find([])
-    // .then(deviceContacts => {
-    //   console.log('What are the device contacts?: ', deviceContacts);
-    //   this.firebaseService.saveAssociatedLeads([testContact]);
-    // })
-    // .catch((err) => {
-    //   console.error(err);
-    // });
-
-  //   let contact: Contact = this.contacts.create();
-
-  //   contact.name = new ContactName(null, '', '');
-  //  contact.phoneNumbers = [new ContactField('mobile', '')];
-    // we need to figure out where we want to save these contacts
-    // we can only test this nativly
-
-  //  contact.save() {
-  //    const contactDTO = {
-  //      name: document.getElementById(contact.name.formatted).nodeValue,
-  //      phoneNumbers: document.getElementById(contact.phoneNumbers).nodeValue;
-  //    };
-    //  firebase.database().ref(associatedLead).set({
-    //      contact: document.getElementById(contact.name).nodeValue,
-    //      contactPhoneNumber: document.getElementById(contact.phoneNumbers).nodeValue
-    //  });
-  //  }
     // verify that passwords match
     const { username, password, cpassword } = this
     if (password !== cpassword) {

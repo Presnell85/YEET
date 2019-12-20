@@ -4,6 +4,7 @@ import { Question, QuestionOption } from '@interfaces/index';
 @Component({
   selector: 'bool-card',
   templateUrl: 'boolean-card.component.html',
+  styleUrls: ['boolean-card.component.scss']
 })
 export class BooleanComponent {
     @Input() question: Question;

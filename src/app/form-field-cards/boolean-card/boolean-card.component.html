@@ -1,7 +1,9 @@
 <ion-card>
     <ion-card-title>Click One</ion-card-title>
     <ion-card-content>{{question.userPrompt}}</ion-card-content>
-    <ion-button *ngFor="let option of question.options" (click)="emitBoolQuestion(option)">
-        {{option.label}}
-    </ion-button>
+    <p>
+        <ion-button full *ngFor="let option of question.options" (click)="emitBoolQuestion(option)">
+            {{option.label}}
+        </ion-button>
+    </p>
 </ion-card>

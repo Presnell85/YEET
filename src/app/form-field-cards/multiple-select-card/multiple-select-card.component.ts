@@ -4,6 +4,7 @@ import { Question, QuestionOption } from '@interfaces/index';
 @Component({
 selector: 'multi-card',
 templateUrl: 'multiple-select-card.component.html',
+styleUrls: ['multiple-select-card.component.scss']
 })
 export class MultiSelectComponent {
     @Input() question: Question;
