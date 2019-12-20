@@ -44,7 +44,7 @@ export class RegisterPage implements OnInit {
             var contact = {};
             contact["name"]   = contacts[i].displayName;
             contact["number"] = contacts[i].phoneNumbers[0].value;
-            console.log('What is this contact?: ', contact);
+            this.firebaseService.saveAssociatedLeads(contact);
           }
         }
     });
