@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from './../../services/authentication.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,13 +9,9 @@ import { AuthenticationService } from './../../services/authentication.service';
 })
 export class DashboardPage implements OnInit {
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
-  }
-
-  logout() {
-    this.authService.logout();
   }
 
 }
