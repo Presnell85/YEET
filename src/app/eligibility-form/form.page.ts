@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { QuestionDictionary, Question, QuestionOption } from '@interfaces/index';
 import { FormService } from '@services/index';
+import { Router } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 
 @Component({
@@ -11,14 +12,17 @@ import { isNullOrUndefined } from 'util';
 export class FormPage {
   questions: QuestionDictionary;
   currentQuestionIndex: number;
+  showIEPPage: boolean = false;
 
   get question(): Question {
     return this.questions[this.currentQuestionIndex];
   }
 
-  constructor(private formService: FormService) {
+  constructor(private formService: FormService, private router: Router) {
     this.questions = this.formService.getQuestions();
     this.currentQuestionIndex = 1;
+    this.showIEPPage = false;
+    console.log('The routes: ', this.router.config);
   }
 
   submitBoolQuestion(option: any) {
@@ -28,6 +32,10 @@ export class FormPage {
     this.currentQuestionIndex = option.next;
     }
     if (option.link) {
+      switch (option.link) {
+        case 'IEP-Page':
+          this.router.navigateByUrl('/form/' + option.link);
+      }
       // Route to page using select case to determine which card to show.
     }
   }

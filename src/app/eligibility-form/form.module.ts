@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
 
 import { FormPage } from './form.page';
 import { FormPageRoutingModule } from './form-routing.module';
 import { FormFieldModule } from '../form-field-cards/form-field.module';
+import { PeriodCardsModule } from '../period-cards/period-cards.module';
 
 @NgModule({
   imports: [
@@ -14,7 +14,8 @@ import { FormFieldModule } from '../form-field-cards/form-field.module';
     FormsModule,
     IonicModule,
     FormPageRoutingModule,
-    FormFieldModule
+    FormFieldModule,
+    PeriodCardsModule
   ],
   declarations: [FormPage]
 })
