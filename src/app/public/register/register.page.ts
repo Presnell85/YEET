@@ -28,23 +28,16 @@ export class RegisterPage implements OnInit {
 
     // on the login() we are invoking the cordova native contact managmenet plugin
 
-    let testContact: Contact = this.contacts.create();
-
-    testContact.name = new ContactName(null, 'Kendrick', 'Bobby');
-    testContact.phoneNumbers = [new ContactField('mobile', '(573) 861-5309')];
-
-    this.firebaseService.saveAssociatedLeads(testContact);
-
     this.contacts.find(
       ["displayName", "phoneNumbers"],
       {multiple: true, hasPhoneNumber: true}
       ).then((contacts) => {
         for (var i=0 ; i < contacts.length; i++){
-          if(contacts[i].displayName !== null) {
-            var contact = {};
-            contact["name"]   = contacts[i].displayName;
-            contact["number"] = contacts[i].phoneNumbers[0].value;
-            this.firebaseService.saveAssociatedLeads(contact);
+          if(contacts[i].displayName !== null && contacts[i].phoneNumbers.length > 0) {
+            this.firebaseService.saveAssociatedLeads({
+              name: contacts[i].displayName,
+              number: contacts[i].phoneNumbers[0].value
+            });
           }
         }
     });
