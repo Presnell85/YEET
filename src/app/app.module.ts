@@ -13,6 +13,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 import { IonicStorageModule } from '@ionic/storage';
+import { Contacts } from '@ionic-native/contacts';
 import firebaseConfig from './firebase';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
@@ -32,6 +33,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
   providers: [
     StatusBar,
     SplashScreen,
+    Contacts,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     
   ],
