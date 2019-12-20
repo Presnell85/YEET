@@ -6,13 +6,15 @@ import { RouterModule } from '@angular/router';
 
 import { FormPage } from './form.page';
 import { FormPageRoutingModule } from './form-routing.module';
+import { FormFieldModule } from '../form-field-cards/form-field.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FormPageRoutingModule
+    FormPageRoutingModule,
+    FormFieldModule
   ],
   declarations: [FormPage]
 })

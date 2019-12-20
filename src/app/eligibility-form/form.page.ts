@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { QuestionDictionary, Question } from '@interfaces/index';
+import { QuestionDictionary, Question, QuestionOption } from '@interfaces/index';
 import { FormService } from '@services/index';
 
 @Component({
@@ -12,14 +12,21 @@ export class FormPage {
   currentQuestionIndex: number;
 
   get question(): Question {
-    console.log('The questions: ', this.questions);
-    console.log('The viewed question: ', this.questions[1]);
     return this.questions[this.currentQuestionIndex];
   }
 
   constructor(private formService: FormService) {
     this.questions = this.formService.getQuestions();
     this.currentQuestionIndex = 1;
+  }
+
+  submitBoolQuestion(option: QuestionOption) {
+    this.questions[this.currentQuestionIndex].value = option.value;
+    this.currentQuestionIndex = +option.next;
+  }
+
+  submitMultiQuestion(option: QuestionOption) {
+
   }
 
 }

@@ -13,6 +13,7 @@ export interface Question {
 export interface QuestionOption {
     label: string,
     value: number,
+    next: number,
     link: string,
     compare: string
 }
@@ -43,6 +44,7 @@ export function toQuestionOption(data?: any): QuestionOption {
     const option = {
         label: data.label ? data.label : null,
         value: data.value ? data.value : null,
+        next: data.next ? data.next : null,
         link: data.link ? data.link : null,
         compare: data.compare ? data.compare : null
     }

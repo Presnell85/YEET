@@ -20,8 +20,8 @@ const emptyQuestionArray = [
         "userReadBackPrompt": "Currently on Medicare:",
         "value": null,
         "options": [
-            {"label": "Yes", "value": true, "link": 2},
-            {"label": "No", "value": false, "link": 3}
+            {"label": "Yes", "value": true, "next": 2},
+            {"label": "No", "value": false, "next": 3}
         ]
     },
     {
@@ -31,7 +31,7 @@ const emptyQuestionArray = [
         "userReadBackPrompt": null,
         "value": null,
         "options": [
-            {"label": "Ok", "value": true, "link": 8}
+            {"label": "Ok", "value": true, "next": 4}
         ],
     },
     {
@@ -57,7 +57,7 @@ const emptyQuestionArray = [
         "options": [
             {"label": "Yes, I am.", "value": "Yes, I am.", "link": "SEP-Page"},
             {"label": "No, I intend to keep working.", "value": "No, I intend to keep working.", "link": "No-Medicare-Page"},
-            {"label": "I'm already retired!", "value": "I'm already retired!", "link": 6}
+            {"label": "I'm already retired!", "value": "I'm already retired!", "next": 6}
         ]
     },
     // {
@@ -80,7 +80,7 @@ const emptyQuestionArray = [
     //     "options": [
     //         {"label": "Yes, I am.", "value": "Yes, I am.", "link": "SEP-Page"},
     //         {"label": "No, I intend to keep working.", "value": "No, I intend to keep working.", "link": "No-Medicare-Page"},
-    //         {"label": "I'm already retired!", "value": "I'm already retired!", "link": 6}
+    //         {"label": "I'm already retired!", "value": "I'm already retired!", "next": 6}
     //     ]
     // },
     // {
@@ -91,7 +91,7 @@ const emptyQuestionArray = [
     //     "value": null,
     //     "options": [
     //         {"label": "Yes", "value": true, "link": "SEP-Page"},
-    //         {"label": "No", "value": false, "link": 7}
+    //         {"label": "No", "value": false, "next": 7}
     //     ]
     // },
     // {
@@ -112,7 +112,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "What is the effective date on your Part B of Medicare?",
     //     "userReadBackPrompt": "The effective date on your Part B of Medicare:",
     //     "value": null,
-    //     "options": ["6 months or more ago", "not more than 6 months ago"],
+    //     "options": [
+    //     {"label": "6 months or more ago", "compare": "partBSixMonthsOrMore"},
+    //     {"label": not more than 6 months ago", "compare": "partBSixMonthsOrMore"}
+    // ],
     //     "firstFollowUp": 18,
     //     "secondFollowUp": 9
     // },
@@ -122,7 +125,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "We are checking our systems to determine your eligibility",
     //     "userReadBackPrompt": "Part B was in effect:",
     //     "value": null,
-    //     "options": ["in effect", "not in effect"],
+    //     "options": [
+    //         {"label": "in effect", "compare": "partBInEffect"},
+    //         {"label": "not in effect", "compare": "partBInEffect"}
+    //     ],
     //     "firstFollowUp": 10,
     //     "secondFollowUp": "Open-Enrollment-Page"
     // },
@@ -132,7 +138,11 @@ const emptyQuestionArray = [
     //     "userPrompt": "Do you currently have any coverage in addition to your Medicare?",
     //     "userReadBackPrompt": "Additional coverage to Medicare:",
     //     "value": null,
-    //     "options": ["Yes", "No", "Unsure"],
+    //     "options": [
+    //         {"label": "Yes", "value": "YES", "next": 13},
+    //         {"label": "No", "value": "NO", "link": "Open-Enrollment-Page"},
+    //         {"label": "Unsure", "value": "UNSURE", "next": 11}
+    //     ],
     //     "firstFollowUp": 13,
     //     "secondFollowUp": "Open-Enrollment-Page",
     //     "thirdFollowUp": 11
@@ -143,9 +153,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "Do you pay anything out of pocket of a checking or savings account for coverage in addition to your Medicare Part B Premium?",
     //     "userReadBackPrompt": "Ancillary Payments for Part B Premium:",
     //     "value": null,
-    //     "options": ["Yes/I don't know", "No"],
-    //     "firstFollowUp": 12,
-    //     "secondFollowUp": 13
+    //     "options": [
+    //         {"label": "Yes/I don't know", "value": true, "next": 12},
+    //         {"label": "No", "value": false, "next": 13}
+    //     ]
     // },
     // {
     //     "id": 12,
@@ -153,9 +164,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "Do you use the same card at the doctor and the pharmacy?",
     //     "userReadBackPrompt": "Using the same card at the doctor and the pharmacy:",
     //     "value": null,
-    //     "options": ["Yes", "No"],
-    //     "firstFollowUp": 13,
-    //     "secondFollowUp": "Open-Enrollment-Page"
+    //     "options": [
+    //             {"label": "Yes", "value": true, "next": 13},
+    //             {"label": "No", "value": false, "link": "Open-Enrollment-Page"}
+    //         ],
     // },
     // {
     //     "id": 13,
@@ -163,9 +175,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "Did you sign up for this plan through a former employer's retirement benefit?",
     //     "userReadBackPrompt": "Signed up for a plan through a former employer:",
     //     "value": null,
-    //     "options": ["Yes", "No"],
-    //     "firstFollowUp": "Retirement-Page",
-    //     "secondFollowUp": "MA-Page"
+    //     "options": [
+    //         {"label": "Yes", "value": true, "link": "Retirement-Page"},
+    //         {"label": "No", "value": false, "link": "MA-Page"}
+    //     ]
     // },
     // {
     //     "id": 14,
@@ -173,11 +186,12 @@ const emptyQuestionArray = [
     //     "userPrompt": "What kind of coverage do you have in addition to your Medicare?",
     //     "userReadBackPrompt": "Additional coverage to your Medicare:",
     //     "value": null,
-    //     "options": ["Medicare Advantage Plan or Medicaid", "Medigap (Medicare Supplement) and/or a Part D Drug Plan", "I don't see my coverage/I'm not sure", "Coverage through a current employer"],
-    //     "firstFollowUp": 13,
-    //     "secondFollowUp": "Open-Enrollment-Page",
-    //     "thirdFollowUp": 11,
-    //     "fourthFollowUp": 15
+    //     "options": [
+    //         {"label": "Medicare Advantage Plan or Medicaid", "value": "Medicare Advantage Plan or Medicaid", "next": 13},
+    //         {"label": "Medigap (Medicare Supplement) and/or a Part D Drug Plan", "value": "Medigap (Medicare Supplement) and/or a Part D Drug Plan", "link": "Open-Enrollment-Page"},
+    //         {"label": "I don't see my coverage/I'm not sure", "value": "I don't see my coverage/I'm not sure", "next": 11},
+    //         {"label": "Coverage through a current employer", "value": "Coverage through a current employer", "next": 15}
+    //     ]
     // },
     // {
     //     "id": 15,
@@ -185,8 +199,9 @@ const emptyQuestionArray = [
     //     "userPrompt": "Often times indiviudals fearing a Medicare premium penalty will start Medicare Part B at 65 while still maintaining coverage through a current employer. This is costly, ineffeicient, and poor coverage. Please press 'Ok' to continue.",
     //     "userReadBackPrompt": null,
     //     "value": null,
-    //     "options": null,
-    //     "firstFollowUp": 16
+    //     "options": [
+    //         {"label": "Ok", "value": true, "next": 16}
+    //     ]
     // },
     // {
     //     "id": 16,
@@ -194,9 +209,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "Are you wanting to begin using your Medicare benefits?",
     //     "userReadBackPrompt": "You want to start using your Medicare benefits:",
     //     "value": null,
-    //     "options": ["Yes", "No"],
-    //     "firstFollowUp": "Open-Enrollment-Page",
-    //     "secondFollowUp": 17
+    //     "options": [
+    //         {"label": "Yes", "value": true, "link": "Open-Enrollment-Page"},
+    //         {"label": "No", "value": false, "next": 17}
+    //     ]
     // },
     // {
     //     "id": 17,
@@ -204,8 +220,9 @@ const emptyQuestionArray = [
     //     "userPrompt": "The client should be informed: they are in their once in a lifetime Open Enrollment Period with Medicare.  Using Original Medicare in coordination with a group employer plan is like having 80% each of 2 very different puzzles and trying to complete 1 full puzzle; they weren't made to work together and there will always be gaps. If the client has no dependents on the plan (or has other Medicare-eligible dependents) or if the client is paying a premium for the group plan, they will likely attain a much higher level of coverage at a better cost with Medicare approved coverage options, such as Medigap or Medicare Advantage Plans. Please press 'Ok' to continue.",
     //     "userReadBackPrompt": null,
     //     "value": null,
-    //     "options": null,
-    //     "firstFollowUp": "Open-Enrollment-Page"
+    //     "options": [
+    //         { "label": "Ok", "value": true, "link": "Open-Enrollment-Page"}
+    //     ]
     // },
     // {
     //     "id": 18,
@@ -213,10 +230,11 @@ const emptyQuestionArray = [
     //     "userPrompt": "Do you currently have any coverage in addition to your Medicare?",
     //     "userReadBackPrompt": "Any additonal coverage to your Medicare:",
     //     "value": null,
-    //     "options": ["Yes", "No", "Not Sure"],
-    //     "firstFollowUp": null,
-    //     "secondFollowUp": "Open-Enrollment-Page",
-    //     "thirdFollowUp": 19
+    //     "options": [
+    //         {"label": "Yes", "value": "YES", "next": 22},
+    //         {"label": "No", "value": "NO", "link": "Underwriting-Page"},
+    //         {"label": "Not Sure", "value": "UNSURE", "next": 19}
+    //     ]
     // },
     // {
     //     "id": 19,
@@ -224,9 +242,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "Do you pay anything out of a checking or savings account for coverage in addition to your Medicare Part B Premium?",
     //     "userReadBackPrompt": "Ancillary Payments for Part B Premium:",
     //     "value": null,
-    //     "options": ["Yes/I don't know", "No"],
-    //     "firstFollowUp": 20,
-    //     "secondFollowUp": 21
+    //     "options": [
+    //         {"label": "Yes/I don't know", "value": true, "next": 20},
+    //         {"label": "No", "value": false, "next": 21}
+    //     ]
     // },
     // {
     //     "id": 20,
@@ -234,9 +253,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "Do you use the same card at the doctor and the pharmacy?",
     //     "userReadBackPrompt": "Using the same card at the doctor and the pharmacy:",
     //     "value": null,
-    //     "options": ["Yes", "No"],
-    //     "firstFollowUp": 21,
-    //     "secondFollowUp": "Underwriting-Page"
+    //     "options": [
+    //         {"label": "Yes", "value": true, "next": 21},
+    //         {"label": "No", "value": false, "link": "Underwriting-Page"}
+    //     ]
     // },
     // {
     //     "id": 21,
@@ -244,9 +264,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "Did you sign up for this plan through a former employer's retirement benefit?",
     //     "userReadBackPrompt": "Signed up for a plan through a former employer:",
     //     "value": null,
-    //     "options": ["Yes", "No"],
-    //     "firstFollowUp": "Retirement-Page",
-    //     "secondFollowUp": "MA-Page"
+    //     "options": [
+    //         {"label": "Yes", "value": true, "link": "Retirement-Page"},
+    //         {"label": "No", "value": false, "link": "MA-Page"}
+    //     ]
     // },
     // {
     //     "id": 22,
@@ -254,11 +275,12 @@ const emptyQuestionArray = [
     //     "userPrompt": "What kind of coverage do you have in addition to your Medicare?",
     //     "userReadBackPrompt": "Additional coverage to your Medicare:",
     //     "value": null,
-    //     "options": ["Medicare Advantage Plan or Medicaid", "Medigap (Medicare Supplement) and/or a Part D Drug Plan", "I don't see my coverage/I'm not sure", "Coverage through a current employer"],
-    //     "firstFollowUp": 21,
-    //     "secondFollowUp": "Underwriting-Page",
-    //     "thirdFollowUp": 19,
-    //     "fourthFollowUp": 23
+    //     "options": [
+    //         {"label": "Medicare Advantage Plan or Medicaid", "value": "Medicare Advantage Plan or Medicaid", "next": 21},
+    //         {"label": "Medigap (Medicare Supplement) and/or a Part D Drug Plan", "value": "Medigap (Medicare Supplement) and/or a Part D Drug Plan", "link": "Underwriting-Page"},
+    //         {"label": "I don't see my coverage/I'm not sure", "value": "I don't see my coverage/I'm not sure", "next": 19},
+    //         {"label": "Coverage through a current employer", "value": "Coverage through a current employer", "next": 23}
+    //     ]
     // },
     // {
     //     "id": 23,
@@ -266,8 +288,9 @@ const emptyQuestionArray = [
     //     "userPrompt": "Often times indiviudals fearing a Medicare premium penalty will start Medicare Part B at 65 while still maintaining coverage through a current employer. This is costly, ineffeicient, and poor coverage. Please press 'Ok' to continue.",
     //     "userReadBackPrompt": null,
     //     "value": null,
-    //     "options": null,
-    //     "firstFollowUp": 24
+    //     "options": [
+    //         {"label": "Ok", "value": true, "next": 24}
+    //     ]
     // },
     // {
     //     "id": 24,
@@ -275,9 +298,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "Are you planning on retiring in the next 60 days?",
     //     "userReadBackPrompt": "Are you planning on retiring in the next 60 days:",
     //     "value": null,
-    //     "options": ["Yes", "No"],
-    //     "firstFollowUp": "Guaranteed-Insured-Page",
-    //     "secondFollowUp": 25
+    //     "options": [
+    //         {"label": "Yes", "value": true, "link": "Guaranteed-Insured-Page"},
+    //         {"label": "No", "value": false, "next": 25}
+    //     ]
     // },
     // {
     //     "id": 25,
@@ -285,9 +309,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "Are you wanting to begin using your Medicare benefits?",
     //     "userReadBackPrompt": "Are you wanting to begin using your Medicare benefits:",
     //     "value": null,
-    //     "options": ["Yes", "No"],
-    //     "firstFollowUp": 27,
-    //     "secondFollowUp": 26
+    //     "options": [
+    //         {"label": "Yes", "value": true, "next": 27},
+    //         {"label": "No", "value": false, "next": 26}
+    //     ]
     // },
     // {
     //     "id": 26,
@@ -295,8 +320,9 @@ const emptyQuestionArray = [
     //     "userPrompt": "Using Original Medicare in coordination with a group employer plan is like having 80% of 2 very different puzzles and trying to complete 1 full puzzle; they weren't made to work together and there will always be gaps. If the client has no dependents on the plan (or has other Medicare-eligible dependents) or if the client is paying a premium for the group plan, they will likely attain a much higher level of coverage at a better cost with Medicare approved coverage options, such as Medigap or Medicare Advantage Plans. Please press 'Ok' to continue.",
     //     "userReadBackPrompt": null,
     //     "value": null,
-    //     "options": null,
-    //     "isEnd": true
+    //     "options": [
+    //         {"label": "Ok", "value": true, "next": 25}
+    //     ]
     // },
     // {
     //     "id": 26,
@@ -304,9 +330,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "Are you currently in an Open Enrollment for your employer plan?",
     //     "userReadBackPrompt": "You are currently in Open Enrollment with your employer's plan:",
     //     "value": null,
-    //     "options": ["Yes", "No"],
-    //     "firstFollowUp": "Guaranteed-Insured-Page",
-    //     "secondFollowUp": 27
+    //     "options": [
+    //         {"label": "Yes", "value": true, "link": "Quaranteed-Insured-Page"},
+    //         {"label": "No", "value": false, "next": 27}
+    //     ]
     // },
     // {
     //     "id": 27,
@@ -314,9 +341,10 @@ const emptyQuestionArray = [
     //     "userPrompt": "Will your employer let you leave your plan in the middle of the year?",
     //     "userReadBackPrompt": "Your employer will let you leave your plan in the middle of the year:",
     //     "value": null,
-    //     "options": ["Yes", "No"],
-    //     "firstFollowUp": 28,
-    //     "secondFollowUp": "Schedule-Call-Page"
+    //     "options": [
+    //         {"label": "Yes", "value": true, "next": 28},
+    //         {"label": "No", "value": false, "link": "Schedule-Call-Page"}
+    //     ]
     // },
     // {
     //     "id": 28,
@@ -324,8 +352,9 @@ const emptyQuestionArray = [
     //     "userPrompt": "Contact your employer's benefits administrator (usually an individual in HR) to confirm this possibility",
     //     "userReadBackPrompt": "Confirmation by your employer's benefits administrator:",
     //     "value": null,
-    //     "options": ["Confirmed", "Unconfirmed"],
-    //     "firstFollowUp": "Guaranteed-Insured-Page",
-    //     "secondFollowUp": "Schedule-Call-Page"
+    //     "options": [
+    //         {"label": "Confirmed", "value": true, "link": "Guaranteed-Insured-Page"},
+    //         {"label": "Unconfirmed", "value": false, "link": "Schedule-Call-Page"}
+    //     ]
     // }
 ]
