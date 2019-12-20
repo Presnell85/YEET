@@ -6,5 +6,17 @@ import { QuestionDictionary, Question, QuestionOption } from '@interfaces/index'
   templateUrl: 'date-time-card.component.html',
 })
 export class DateTimeComponent {
+  dateEntered: Date;
 
+  @Input() question: Question;
+
+  @Output() dateTimeAnswer = new EventEmitter<{option: QuestionOption, dateEntered: Date}>();
+
+  constructor() {
+    this.dateEntered = new Date();
+  }
+
+  sendDateTime(option: QuestionOption) {
+    this.dateTimeAnswer.emit({option, dateEntered: new Date(this.dateEntered)});
+  }
 }

@@ -100,24 +100,9 @@ const emptyQuestionArray = [
         "userReadBackPrompt": "The effective date on your Part B of Medicare:",
         "value": null,
         "options": [
-        {"label": "6 months or more ago", "compare": "partBSixMonthsOrMore"},
-        {"label": "not more than 6 months ago", "compare": "partBSixMonthsOrMore"}
-    ],
-        "firstFollowUp": 18,
-        "secondFollowUp": 9
-    },
-    {
-        "id": 9,
-        "questionType": "DATETIME",
-        "userPrompt": "We are checking our systems to determine your eligibility",
-        "userReadBackPrompt": "Part B was in effect:",
-        "value": null,
-        "options": [
-            {"label": "in effect", "compare": "partBInEffect"},
-            {"label": "not in effect", "compare": "partBInEffect"}
-        ],
-        "firstFollowUp": 10,
-        "secondFollowUp": "Open-Enrollment-Page"
+        {"label": "6 months or more ago", "compare": "partB"},
+        {"label": "not more than 6 months ago", "compare": "partB"}
+    ]
     },
     {
         "id": 10,

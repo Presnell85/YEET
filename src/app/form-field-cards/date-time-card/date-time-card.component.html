@@ -1,0 +1,6 @@
+<ion-card>
+    <ion-card-title>Select A Date</ion-card-title>
+    <ion-card-content>{{question.userPrompt}}</ion-card-content>
+    <ion-datetime [(ngModel)]="dateEntered" placeholder="Select A Date"></ion-datetime>
+    <ion-button (click)="sendDateTime(question.options[0])">Submit</ion-button>
+</ion-card>

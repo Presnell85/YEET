@@ -16,31 +16,6 @@
     <info-card [question]="question" *ngSwitchCase="'INFO'" (infoDump)="submitInfoDump($event)"></info-card>
     <multi-card [question]="question" *ngSwitchCase="'MULTISELECT'" (multiAnswer)="submitMultiQuestion($event)">
     </multi-card>
-    <ion-card *ngSwitchCase="'DATETIME'">
-        <ion-card-title>Select A Date</ion-card-title>
-        <ion-card-content>{{question.userPrompt}}</ion-card-content>
-        <ion-datetime></ion-datetime>
-        <ion-button *ngIf="question.options[0].compare==='dateOfBirth'" (click)="submitDateOfBirth()">Submit
-        </ion-button>
-        <ion-button *ngIf="question.options[0].compare==='janToMarch'" (click)="submitJanToMarch()">Submit
-        </ion-button>
-    </ion-card>
+    <date-time-card [question]="question" *ngSwitchCase="'DATETIME'" (dateTimeAnswer)="submitDatetimeQuestion($event)">
+    </date-time-card>
 </ion-content>
-<!-- <ion-content>
-            <div *ngFor="let question of questions">
-                <span [ngSwitch]="question.questionType">
-                    <ion-card *ngSwitchCase="'BOOLEAN'">
-                        <ion-card-title>Yes/No Question</ion-card-title>
-                    </ion-card>
-                    <ion-card *ngSwitchCase="'INFO'">
-                        <ion-card-title>Info Dump</ion-card-title>
-                    </ion-card>
-                    <ion-card *ngSwitchCase="'MULTISELECT'">
-                        <ion-card-title>Up To Four Options Question</ion-card-title>
-                    </ion-card>
-                    <ion-card *ngSwitchCase="'DATETIME'">
-                        <ion-card-title>Date Picker Question</ion-card-title>
-                    </ion-card>
-                </span>
-            </div>
-</ion-content> -->
