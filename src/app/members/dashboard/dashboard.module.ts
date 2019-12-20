@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
+import { Contacts } from '@ionic-native/contacts/ngx';
+
 import { DashboardPage } from './dashboard.page';
 
 @NgModule({
@@ -15,6 +17,7 @@ import { DashboardPage } from './dashboard.page';
     IonicModule,
     DashboardPageRoutingModule
   ],
-  declarations: [DashboardPage]
+  declarations: [DashboardPage],
+  providers: [Contacts]
 })
 export class DashboardPageModule {}
