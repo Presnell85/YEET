@@ -13,6 +13,7 @@ export class BooleanComponent {
     constructor() {}
 
     emitBoolQuestion(option: QuestionOption) {
+      console.log('About to emit option selected: ', option);
         this.boolAnswer.emit(option);
     }
 }

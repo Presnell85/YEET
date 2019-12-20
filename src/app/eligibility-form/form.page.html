@@ -18,7 +18,7 @@
         <ion-button *ngFor="let option of question.options" (click)="submitBoolQuestion(option)">{{option.label}}
         </ion-button>
     </ion-card> -->
-    <bool-field [question]="question" *ngSwitchCase="'BOOLEAN'" (boolAnswer)="submitBoolQuestion($event.value)">
+    <bool-field [question]="question" *ngSwitchCase="'BOOLEAN'" (boolAnswer)="submitBoolQuestion($event)">
     </bool-field>
     <ion-card *ngSwitchCase="'INFO'">
         <ion-card-title>Important Message</ion-card-title>

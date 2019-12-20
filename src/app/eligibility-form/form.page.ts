@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { QuestionDictionary, Question, QuestionOption } from '@interfaces/index';
 import { FormService } from '@services/index';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-form',
@@ -20,13 +21,35 @@ export class FormPage {
     this.currentQuestionIndex = 1;
   }
 
-  submitBoolQuestion(option: QuestionOption) {
-    this.questions[this.currentQuestionIndex].value = option.value;
-    this.currentQuestionIndex = +option.next;
+  submitBoolQuestion(option: any) {
+    this.questions[this.currentQuestionIndex].value = option.answer;
+    if (option.next) {
+      console.log('What is next?: ', option.next, this.questions[option.next]);
+    this.currentQuestionIndex = option.next;
+    }
+    if (option.link) {
+      // Route to page using select case to determine which card to show.
+    }
   }
 
   submitMultiQuestion(option: QuestionOption) {
+    this.questions[this.currentQuestionIndex].value = option.answer;
+    if (option.next) {
+      this.currentQuestionIndex = option.next;
+    }
+    if (option.link) {
+      // Route to page using select case to determine which card to show.
+    }
+  }
 
+  submitInfoDump(option: QuestionOption) {
+    this.questions[this.currentQuestionIndex].value = option.answer;
+    if (option.next) {
+      this.currentQuestionIndex = option.next;
+    }
+    if (option.link) {
+      // Route to page using select case to determine which card to show.
+    }
   }
 
 }
