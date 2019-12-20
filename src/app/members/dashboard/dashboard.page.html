@@ -11,13 +11,12 @@
 
 <ion-content>
 <ion-item>
-  <ion-label position="floating">Email</ion-label>
+  <ion-label position="floating"[(ngModel)="username"]>Email</ion-label>
   <ion-input></ion-input>
 </ion-item>
 <ion-item>
-  <ion-label position="floating">Password</ion-label>
+  <ion-label position="floating"[(ngModel)="password"]>Password</ion-label>
   <ion-input></ion-input>
 </ion-item>
-<ion-button expand="full">login</ion-button>
-
+<ion-button expand="full"(click)="login()">login</ion-button>
 </ion-content>

@@ -10,20 +10,28 @@
 <ion-content>
 
 <ion-item>
-  <ion-label position="floating">First Name</ion-label>
+  <ion-label position="floating" [(ngModel)]="firstname">First Name</ion-label>
   <ion-input></ion-input>
 </ion-item>
 <ion-item>
-  <ion-label position="floating">Last Name</ion-label>
+  <ion-label position="floating" [(ngModel)]="lastname">Last Name</ion-label>
   <ion-input></ion-input>
 </ion-item>
 <ion-item>
-  <ion-label position="floating">Email</ion-label>
+  <ion-label position="floating" [(ngModel)]="username">Email</ion-label>
   <ion-input></ion-input>
 </ion-item>
 <ion-item>
-  <ion-label position="floating">Phone Number</ion-label>
+  <ion-label position="floating"[(ngModel)]="phonenumber">Phone Number</ion-label>
   <ion-input></ion-input>
 </ion-item>
-<ion-button expand="block">Create Account</ion-button>
+<ion-item>
+  <ion-label position="floating"[(ngModel)]="password">Password</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating"[(ngModel)]="cpassword">Confirm Password</ion-label>
+  <ion-input></ion-input>
+</ion-item>
+<ion-button expand="block"(click)="register()">Create Account</ion-button>
 </ion-content>

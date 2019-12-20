@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from './../../services/authentication.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
+
 
 @Component({
   selector: 'app-login',
@@ -8,13 +10,25 @@ import { AuthenticationService } from './../../services/authentication.service';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(public afAuth: AngularFireAuth) { }
+// login creditials
+  username = ""
+  password = ""
 
   ngOnInit() {
   }
 
-  login(){
-    this.authService.login();
+    // firebase initialization for email login
+    // Jon checkout this try catch and let me know if it looks stupid
+  async login(){
+   
+    const { username, password } = this
+    try{
+      // this is a terrible hack but for some reason adding a default gmail works?????
+      const res = await this.afAuth.auth.signInWithEmailAndPassword(username + '@gmail.com', password)
+    }catch(err) {
+      console.dir(err)
+    }
   }
 
 }
