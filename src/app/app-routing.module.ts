@@ -8,6 +8,9 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: '', redirectTo: 'login', pathMatch: 'full'
+  },  
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
@@ -16,9 +19,22 @@ const routes: Routes = [
     loadChildren: () => import('./eligibility-form/form.module').then(m => m.EligibilityFormModule)
   },
   {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  }
+    path: 'login',
+    loadChildren: () => import('./public/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./public/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./members/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  { 
+    path: 'members', 
+    loadChildren: './members/member-routing.module#MemberRoutingModule'
+  },
+
 ];
 
 @NgModule({
