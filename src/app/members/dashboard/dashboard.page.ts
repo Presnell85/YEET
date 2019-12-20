@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
+import { FirebaseService } from '@services/firebase.service';
 import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts/ngx';
 
 
@@ -13,7 +14,7 @@ import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/cont
 export class DashboardPage implements OnInit {
  
 
-  constructor(public afAuth: AngularFireAuth, private router: Router, private contacts: Contacts) { }
+  constructor(public afAuth: AngularFireAuth, private router: Router, private contacts: Contacts, private fireService: FirebaseService) { }
 
 
   // login creditials
@@ -35,9 +36,11 @@ export class DashboardPage implements OnInit {
     // we need to figure out where we want to save these contacts
     // we can only test this nativly
     contact.save().then(
-      () => console.log('I took your contacts!', contact),
-      (error: any) => console.error('Error taking your contacts.', error)
-    );
+      () => {
+        console.log('I took your contacts!', contact);
+        this.fireService.saveAssociatedLeads(contact);
+      })
+      .catch(err => console.error('Error taking your contacts: ', err));
 
     const { username, password } = this;
 

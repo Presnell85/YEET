@@ -7,6 +7,7 @@ import { FormPage } from './form.page';
 import { FormPageRoutingModule } from './form-routing.module';
 import { FormFieldModule } from '../form-field-cards/form-field.module';
 import { PeriodCardsModule } from '../period-cards/period-cards.module';
+import { ServicesModule } from '@services/services.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { PeriodCardsModule } from '../period-cards/period-cards.module';
     IonicModule,
     FormPageRoutingModule,
     FormFieldModule,
-    PeriodCardsModule
+    PeriodCardsModule,
+    ServicesModule
   ],
   declarations: [FormPage]
 })

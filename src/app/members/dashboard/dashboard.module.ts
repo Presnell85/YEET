@@ -9,13 +9,15 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 import { Contacts } from '@ionic-native/contacts/ngx';
 
 import { DashboardPage } from './dashboard.page';
+import { ServicesModule } from '@services/services.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DashboardPageRoutingModule
+    DashboardPageRoutingModule,
+    ServicesModule
   ],
   declarations: [DashboardPage],
   providers: [Contacts]
