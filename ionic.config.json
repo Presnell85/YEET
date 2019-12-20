@@ -1,5 +1,7 @@
 {
   "name": "YEET",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
