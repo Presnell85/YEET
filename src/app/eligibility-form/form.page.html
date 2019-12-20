@@ -12,32 +12,18 @@
 </ion-header>
 
 <ion-content [ngSwitch]="question.questionType">
-    <!-- <ion-card *ngSwitchCase="'BOOLEAN'">
-        <ion-card-title>Click One</ion-card-title>
-        <ion-card-content>{{question.userPrompt}}</ion-card-content>
-        <ion-button *ngFor="let option of question.options" (click)="submitBoolQuestion(option)">{{option.label}}
-        </ion-button>
-    </ion-card> -->
-    <bool-field [question]="question" *ngSwitchCase="'BOOLEAN'" (boolAnswer)="submitBoolQuestion($event)">
-    </bool-field>
-    <ion-card *ngSwitchCase="'INFO'">
-        <ion-card-title>Important Message</ion-card-title>
-        <ion-card-content>{{question.userPrompt}}</ion-card-content>
-        <ion-button (click)="currentQuestionIndex=question.options[0].link">Ok</ion-button>
-    </ion-card>
-    <ion-card *ngSwitchCase="'MULTISELECT'">
-        <ion-card-title>Click One</ion-card-title>
-        <ion-card-content>{{question.userPrompt}}</ion-card-content>
-        <ion-button *ngFor="let option of question.options" (click)="submitMultiQuestion(option)">{{option.label}}
-        </ion-button>
-    </ion-card>
+    <bool-card [question]="question" *ngSwitchCase="'BOOLEAN'" (boolAnswer)="submitBoolQuestion($event)"></bool-card>
+    <info-card [question]="question" *ngSwitchCase="'INFO'" (infoDump)="submitInfoDump($event)"></info-card>
+    <multi-card [question]="question" *ngSwitchCase="'MULTISELECT'" (multiAnswer)="submitMultiQuestion($event)">
+    </multi-card>
     <ion-card *ngSwitchCase="'DATETIME'">
         <ion-card-title>Select A Date</ion-card-title>
         <ion-card-content>{{question.userPrompt}}</ion-card-content>
         <ion-datetime></ion-datetime>
         <ion-button *ngIf="question.options[0].compare==='dateOfBirth'" (click)="submitDateOfBirth()">Submit
         </ion-button>
-        <ion-button *ngIf="question.options[0].compare==='janToMarch'" (click)="submitJanToMarch()">Submit</ion-button>
+        <ion-button *ngIf="question.options[0].compare==='janToMarch'" (click)="submitJanToMarch()">Submit
+        </ion-button>
     </ion-card>
 </ion-content>
 <!-- <ion-content>

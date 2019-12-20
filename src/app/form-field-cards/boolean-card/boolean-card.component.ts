@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { QuestionDictionary, Question, QuestionOption } from '@interfaces/index';
+import { Question, QuestionOption } from '@interfaces/index';
 
 @Component({
-  selector: 'bool-field',
+  selector: 'bool-card',
   templateUrl: 'boolean-card.component.html',
 })
 export class BooleanComponent {
