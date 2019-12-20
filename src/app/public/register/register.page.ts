@@ -13,7 +13,7 @@ import { FirebaseService } from '@services/firebase.service';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth, private contacts: Contacts, private firebaseService: FirebaseService) { }
+  constructor(public afAuth: AngularFireAuth, private contacts: Contacts, private firebaseService: FirebaseService, private router: Router) { }
 
   username: string = ""
   password: string = ""
@@ -60,6 +60,7 @@ export class RegisterPage implements OnInit {
       // use firebase to create username and password
       const res = await this.afAuth.auth.createUserWithEmailAndPassword(username + '@gmail.com', password)
       console.log(res);
+      this.router.navigateByUrl('/home');
     } catch (error) {
       console.dir(error);
     }
