@@ -5,18 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { FormPage } from './form.page';
+import { FormPageRoutingModule } from './form-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: FormPage
-      }
-    ])
+    FormPageRoutingModule
   ],
   declarations: [FormPage]
 })

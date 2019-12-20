@@ -1,1 +1,45 @@
-<p>Da form go hurr.</p>
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button routerLink="/home">
+                <img src="assets/images/rsz_uma_logo.png" alt="" />
+            </ion-button>
+        </ion-buttons>
+        <ion-title>
+            YEET
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [ngSwitch]="question.questionType">
+    <ion-card *ngSwitchCase="'BOOLEAN'">
+        <ion-card-title>Yes/No Question</ion-card-title>
+        <ion-card-subtitle>We will pose a question that has two possible options.</ion-card-subtitle>
+        <ion-card-content>{{question | json}}</ion-card-content>
+        <ion-button *ngFor="let option of question.options" (click)="currentQuestionIndex=option.link">{{option.label}}
+        </ion-button>
+    </ion-card>
+    <ion-card *ngSwitchCase="'INFO'">
+        <ion-card-title>Info Dump</ion-card-title>
+        <ion-card-subtitle>We will show info for the user before their next question.</ion-card-subtitle>
+    </ion-card>
+</ion-content>
+
+<!-- <ion-content>
+    <div *ngFor="let question of questions">
+        <span [ngSwitch]="question.questionType">
+            <ion-card *ngSwitchCase="'BOOLEAN'">
+                <ion-card-title>Yes/No Question</ion-card-title>
+            </ion-card>
+            <ion-card *ngSwitchCase="'INFO'">
+                <ion-card-title>Info Dump</ion-card-title>
+            </ion-card>
+            <ion-card *ngSwitchCase="'MULTISELECT'">
+                <ion-card-title>Up To Four Options Question</ion-card-title>
+            </ion-card>
+            <ion-card *ngSwitchCase="'DATETIME'">
+                <ion-card-title>Date Picker Question</ion-card-title>
+            </ion-card>
+        </span>
+    </div>
+</ion-content> -->
